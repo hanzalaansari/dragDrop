@@ -1,0 +1,79 @@
+ #root {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ gap: 2rem;
+}
+
+.toolbar {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* margin: 20px; */
+}
+
+.canvas {
+  border: 1px solid #ccc;
+  width: 90vw;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+}
+.functionButton {
+display: flex;
+gap: 1rem;
+}
+
+.draggable-resizable-element {
+  position: absolute;
+  background: white;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.text-element, .image-element {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resize-handle {
+  position: absolute;
+  width: .8rem;
+  height: .8rem;
+  background: black;
+  cursor: se-resize;
+}
+
+.resize-handle.right {
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+  cursor: e-resize;
+}
+
+.resize-handle.bottom {
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  cursor: s-resize;
+}
+
+.resize-handle.bottom-right {
+  right: 0;
+  bottom: 0;
+  transform: translate(50%, 50%);
+}
+
+.submit-button {
+ text-align: end;
+} 
