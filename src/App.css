@@ -3,6 +3,18 @@
   margin: 0 auto;
 }
 
+.tools-btn-parent{
+
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.tools-btn{
+  height: 35px;
+  width: 100px;
+  font-size: 12px;
+}
+
 .parent {
   display: flex;
   flex-direction: column;
@@ -28,6 +40,7 @@
 }
 .functionButton {
 display: flex;
+align-items: center;
 gap: 1rem;
 }
 
@@ -36,6 +49,9 @@ gap: 1rem;
   background: white;
   border: 1px solid black;
   box-sizing: border-box;
+}
+.draggable-resizable-element.selected {
+  border-color: red; 
 }
 
 .text-element, .image-element {
@@ -77,3 +93,42 @@ gap: 1rem;
 .submit-button {
  text-align: end;
 } 
+
+.rotate {
+  transform: translate(50%, 50%);
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: auto;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.rotate:hover {
+  background-color: #8b418b; 
+  border-color: white; 
+  color: white; 
+}
+.inputBox{
+  padding: 11px;
+  border-radius: .5rem;
+  border: 1px solid gray;
+}
+
+@keyframes slideRight {
+  from {left: 0px;}
+  to {left: 80%;}
+}
+
+@keyframes slideDown {
+  from {top: 0px;}
+  to {top: 80%;}
+}
+
+.slide-right {
+  animation: slideRight 0.5s forwards;
+}
+
+.slide-down {
+  animation: slideDown 0.5s forwards;
+}
