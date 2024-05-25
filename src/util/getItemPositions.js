@@ -10,7 +10,8 @@ export const logPositions = (canvasItems) => {
     height: item.height,
     rotation: item.rotation,
     AnimationType: item.animation,
-    url:item.url
+    url:item.url,
+    contentType:item.type
   }));
 
   console.log(positionsInPercentage);

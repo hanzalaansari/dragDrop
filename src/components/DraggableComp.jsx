@@ -1,19 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 
-function DraggableComp({ element, updateElement,isSelected,slideDirection,setSlideDirection,setSelectedElementId }) {
+function DraggableComp({ element, updateElement,isSelected,slideDirection,setSlideDirection,setSelectedElementId,hanldleDeleteitem }) {
     const elementRef = useRef(null);
-    const containerHeight = document.querySelector('.canvas').offsetHeight; 
     const containerWidth = document.querySelector('.canvas').offsetWidth; 
-
-    const [isAnimating, setIsAnimating] = useState(false);
+    const containerHeight = document.querySelector('.canvas').offsetHeight; 
 
   useEffect(() => {
     if (slideDirection && elementRef.current && isSelected) {
-      setIsAnimating(true);
       elementRef.current.classList.add(slideDirection);
 
       const handleAnimationEnd = () => {
-        setIsAnimating(false);
         elementRef.current.classList.remove(slideDirection);
 
         let newProperties = {};
@@ -123,11 +119,11 @@ function DraggableComp({ element, updateElement,isSelected,slideDirection,setSli
         {element.type === 'text' ? (
           <div className="text-element">{element.text}</div>
         ) : (
-          <img src={element.url} alt={element.url} className="image-element" />
-          // <img src="https://via.placeholder.com/100" alt="placeholder" className="image-element" />
+          <img src={element.url} alt="placeholder" className="image-element" />
         )}
        {isSelected &&
        <>
+        <div className="deleteItem" onClick={() => hanldleDeleteitem()}>❌</div>
         <div className="resize-handle right" onMouseDown={(e) => handleResizeMouseDown(e, 'right')}></div>
         <div className="resize-handle bottom" onMouseDown={(e) => handleResizeMouseDown(e, 'bottom')}></div>
         <div className="resize-handle bottom-right" onMouseDown={(e) => handleResizeMouseDown(e, 'bottom-right')}></div>
