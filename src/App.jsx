@@ -2,9 +2,11 @@ import React, { useRef, useState } from "react";
 import "./App.css";
 import { logPositions } from "./util/getItemPositions";
 import DraggableComp from "./components/DraggableComp";
+import { removeCanvasItems } from "./util/removeCanvasItems";
 
 function App() {
   const hiddenFileInput = useRef(null);
+  const canvasRef = useRef(null);
   const [canvasItems, setCanvasItems] = useState([]);
   const [selectedElementId, setSelectedElementId] = useState(null);
   const [slideDirection, setSlideDirection] = useState(null);
@@ -92,7 +94,7 @@ function App() {
     }));
   };
   const hanldleDeleteitem = () => {
-    setCanvasItems((prevItems) => prevItems.filter((item) => (item.id !== selectedElementId)))
+    removeCanvasItems(setCanvasItems,selectedElementId)
   }
   const SetuserInputText = (event) => {
     setText(event.target.value);
@@ -144,12 +146,12 @@ function App() {
         </div>
         <button
           className="submit-button"
-          onClick={() => logPositions(canvasItems)}
+          onClick={() => logPositions(canvasRef,canvasItems)}
         >
           Submit
         </button>
       </div>
-      <div className="canvas">
+      <div ref={canvasRef} className="canvas">
         {canvasItems.map((element) => (
           <DraggableComp
             key={element.id}
@@ -162,6 +164,7 @@ function App() {
             highestZIndex={highestZIndex}
             setHighestZIndex={highestZIndex}
             hanldleDeleteitem={hanldleDeleteitem}
+            canvasRef={canvasRef}
           />
         ))}
       </div>

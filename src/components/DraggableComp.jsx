@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
-function DraggableComp({ element, updateElement,isSelected,slideDirection,setSlideDirection,setSelectedElementId,hanldleDeleteitem }) {
+function DraggableComp({ element, updateElement,isSelected,slideDirection,setSlideDirection,setSelectedElementId,hanldleDeleteitem,canvasRef }) {
     const elementRef = useRef(null);
-    const containerWidth = document.querySelector('.canvas').offsetWidth; 
-    const containerHeight = document.querySelector('.canvas').offsetHeight; 
 
   useEffect(() => {
     if (slideDirection && elementRef.current && isSelected) {
@@ -15,10 +13,10 @@ function DraggableComp({ element, updateElement,isSelected,slideDirection,setSli
         let newProperties = {};
         switch (slideDirection) {
           case 'slide-right':
-            newProperties = { x: element.x + containerWidth * 0.8 - element.x,animation:'slide-right' };
+            newProperties = { x: element.x + canvasRef.current.offsetWidth * 0.8 - element.x,animation:'slide-right' };
             break;
           case 'slide-down':
-            newProperties = { y: element.y + containerHeight * 0.8 - element.y,animation:'slide-down' };
+            newProperties = { y: element.y + canvasRef.current.offsetHeight * 0.8 - element.y,animation:'slide-down' };
             break;
           default:
             break;
